@@ -4,10 +4,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyXcel</title>
+    <title>Google Sheets</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/12a62b48d4.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="page-actions"></div>
+    <div class="navbar">
+        <div class="logo"><a href="#"><img src="./images/logo.png" alt=""></a></div>
+        <div class="page-info-actions">
+            <div class="page-action-input">
+                <input type="text" name="" id="sheet-title" value="">
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <div class="page-actions">
+                <div class="page-actn-items">File</div>
+                <div class="page-actn-items">Edit</div>
+                <div class="page-actn-items">View</div>
+                <div class="page-actn-items">Insert</div>
+                <div class="page-actn-items">Format</div>
+                <div class="page-actn-items">Data</div>
+                <div class="page-actn-items">Extensions</div>
+                <div class="page-actn-items">Tools</div>
+                <div class="page-actn-items">Help</div>
+            </div>
+        </div>
+        <div class="comments">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-text" viewBox="0 0 16 16">
+                <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
+                <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+              </svg>
+        </div>
+        <div class="navButton">
+            <button >
+                <i class="fa-sharp fa-solid fa-lock"></i> &nbsp;  Share
+            </button>
+        </div>
+        <div class="profile">
+            <img src="./images/profile.png" alt="">
+        </div>
+        
+        
+    </div>
     <div class="cell-properties"></div>
     <div class="formula-container"></div>
     <div class="grid-container"></div>

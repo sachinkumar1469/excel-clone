@@ -3,3 +3,110 @@
     margin: 0px;
     box-sizing: border-box;
 }
+.navbar{
+    border-bottom: 1px solid gray;
+    display: flex;
+    height: 65px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 13px;
+}
+.logo{
+    
+    width: 4.5%;
+    height: 100%;
+}
+.logo > a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid red; */
+}
+.logo > a > img{
+    width: 90%;
+    height: 80%;
+    background: none;
+}
+.page-info-actions{
+    display: flex;
+    flex-direction: column;
+    width: 76%;
+    overflow: hidden;
+    /* border: 1px solid red; */
+    height: 100%;
+    padding-left: 2px;
+    padding-top:2px ;
+}
+.page-action-input{
+    /* border: 1px solid yellow; */
+    height: 50%;
+}
+.page-action-input > input {
+    width: 173px;
+    height: 100%;
+    font-size: 1.2rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 0px 4px;
+    border: none;
+    color: rgb(96, 96, 96);
+    
+}
+
+.page-actions{
+    /* border: 1px solid yellow; */
+    display: flex;
+    align-items: flex-end;
+    padding-left: 5px;
+    height: 50%;
+
+}
+.page-actn-items{
+    margin-right: 13px;
+    cursor: pointer;
+}
+.comments{
+    width: 4%;
+    height: 100%;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.comments > svg{
+    width: 80%;
+    height: 50%;
+}
+
+.navButton{
+    
+    width: 8%;
+    height: 100%;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navButton > button{
+    width: 100%;
+    height: 70%;
+    font-size: 1rem;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;  
+}
+.profile{
+    height: 100%;
+    /* border: 1px solid red; */
+    width: 4%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile > img{
+    border-radius: 50%;
+}
