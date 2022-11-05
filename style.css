@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 .navbar{
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid rgb(179, 177, 177);
     display: flex;
     height: 65px;
     align-items: center;
@@ -109,4 +109,55 @@
 }
 .profile > img{
     border-radius: 50%;
+}
+.cell-properties{
+    display: flex;
+    padding: 10px 19px;
+    border-bottom: 1px solid rgb(179, 177, 177);;
+}
+.cell-properties > *{
+    margin-right: 15px;
+    cursor: pointer;
+}
+.cell-properties > select{
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.formula-container{
+    display: flex;
+    padding: 0px 19px;
+    padding-left: 2px;
+    border-bottom: 1px solid rgb(179, 177, 177);
+    height: 1.5rem;
+
+}
+.formula-container > *{
+    margin-right: 5px;
+}
+.formula-container > span{
+    height: 100%;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.formula-container > span > img{
+    height: 80%;
+    width: 100%;
+}
+.address-bar{
+    width: 80px;
+    border:none;
+    outline: none;
+    border-right: 1px solid black;
+    text-align: center;
+}
+.function-bar{
+    flex-grow: 1;
+    border:none;
+    border-left: 1px solid black;
+    outline: none;
+    padding-left: 5px;
 }
