@@ -18,11 +18,11 @@ for(let i = 0;i<row;i++){
     sheetDb.push(sheetRow);
 }
 
-function render(currCellSelected){
-    let currCellSelectedObj = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    console.log(currCellSelected);
-    
-}
+// function render(currCellSelected){
+//     let currCellSelectedObj = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
+//     console.log(currCellSelected);
+
+// }
 
 
 

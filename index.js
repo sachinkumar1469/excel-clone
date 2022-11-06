@@ -39,8 +39,8 @@ for(let i = 0;i<row;i++){
             'italic':false,
             underline:false,
             alignment:'center',
-            fontFamily:'monospace',
-            fontSize:'1rem',
+            fontFamily:'sans-serif',
+            fontSize:'medium',
             fontColor:'#000000',
             BgColor:'white'
         }
@@ -183,8 +183,19 @@ function updateCurrSelectedCell(currCellSelected){
             break;
         }
     }
-    // console.log(currCellSelected.getAttribute('id'));
-    // console.log(currCellSelected.getAttribute('rid'));
+
+    //To update font family
+    let fontFamilyOfCell = currCellStorageObject['fontFamily'];
+    currCellSelected.style.fontFamily = fontFamilyOfCell;
+    $fontFamily.value=fontFamilyOfCell;
+
+    //To update font size
+    let fontSizeOfCell = currCellStorageObject['fontSize'];
+    
+    currCellSelected.style.fontSize = fontSizeOfCell;
+    
+    $fontSize.value=fontSizeOfCell;
+   
 }
 
 $bold.addEventListener('click',(e)=>{
@@ -218,4 +229,18 @@ $centerAlign.addEventListener('click',(e)=>{
     currCellStorageObject['alignment']='center';
     updateCurrSelectedCell(currCellSelected);
 })
+$fontFamily.addEventListener("change",(e)=>{
+    // console.log(e.target.value);
+    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
+    currCellStorageObject['fontFamily'] = e.target.value;
+    updateCurrSelectedCell(currCellSelected);
+})
+
+$fontSize.addEventListener('change',(e)=>{
+    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
+    currCellStorageObject['fontSize'] = e.target.value;
+    updateCurrSelectedCell(currCellSelected);
+    // console.log(e.target.value);
+})
+
 document.querySelector('.cell').click();
