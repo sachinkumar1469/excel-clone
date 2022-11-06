@@ -190,12 +190,16 @@ function updateCurrSelectedCell(currCellSelected){
     $fontFamily.value=fontFamilyOfCell;
 
     //To update font size
-    let fontSizeOfCell = currCellStorageObject['fontSize'];
-    
-    currCellSelected.style.fontSize = fontSizeOfCell;
-    
+    let fontSizeOfCell = currCellStorageObject['fontSize'];   
+    currCellSelected.style.fontSize = fontSizeOfCell;  
     $fontSize.value=fontSizeOfCell;
-   
+    
+    //To update the color
+    let colorOfCell = currCellStorageObject['fontColor'];
+    
+    currCellSelected.style.color = colorOfCell;
+    
+    $fontColor.value = colorOfCell;
 }
 
 $bold.addEventListener('click',(e)=>{
@@ -243,4 +247,9 @@ $fontSize.addEventListener('change',(e)=>{
     // console.log(e.target.value);
 })
 
+$fontColor.addEventListener('change',(e)=>{
+    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
+    currCellStorageObject['fontColor'] = e.target.value;
+    updateCurrSelectedCell(currCellSelected);
+})
 document.querySelector('.cell').click();
