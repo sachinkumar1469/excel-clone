@@ -46,17 +46,17 @@
         
     </div>
     <div class="cell-properties">
-        <div class="cut"><i class="fa-solid fa-scissors"></i></div>
-        <div class="copy"><i class="fa-solid fa-copy"></i></div>
-        <div class="paste"><i class="fa-solid fa-paste"></i></div>
-        <select name="" id="" class="fontFamily">
+        <div class="iconCell cut"><i class="fa-solid fa-scissors"></i></div>
+        <div class="iconCell copy"><i class="fa-solid fa-copy"></i></div>
+        <div class="iconCell paste"><i class="fa-solid fa-paste"></i></div>
+        <select name="" id="" class=" fontFamily">
             <option value="Montserrat">Montserrat</option>
             <option value="Merriweather">Merriweather</option>
             <option value="Aerial">Aerial</option>
             <option value="Verdana">Verdana</option>
             <option value="Georgia">Georgia</option>
         </select>
-        <select name="" id="" class="fontSize">
+        <select name="" id="" class=" fontSize">
             <option value="">12</option>
             <option value="">13</option>
             <option value="">14</option>
@@ -67,14 +67,18 @@
             <option value="">19</option>
             <option value="">20</option>
         </select>
-        <div class="bold"><i class="fa-solid fa-bold"></i></div>
-        <div class="italic"><i class="fa-solid fa-italic"></i></div>
-        <div class="udline"><i class="fa-solid fa-underline"></i></div>
-        <div class="leftAlign"><i class="fa-solid fa-align-left"></i></div>
-        <div class="centerAlign"><i class="fa-solid fa-align-center"></i></div>
-        <div class="rightAlign"><i class="fa-solid fa-align-right"></i></div>
-        <div class="colorCell"><i class="fa-sharp fa-solid fa-palette"></i></div>
-        <div class="borderCell"><i class="fa-solid fa-border-all"></i></div>
+        <div class="iconCell bold"><i class="fa-solid fa-bold"></i></div>
+        <div class="iconCell italic"><i class="fa-solid fa-italic"></i></div>
+        <div class="iconCell udline"><i class="fa-solid fa-underline"></i></div>
+        <div class="iconCell leftAlign"><i class="fa-solid fa-align-left"></i></div>
+        <div class="iconCell centerAlign"><i class="fa-solid fa-align-center"></i></div>
+        <div class="iconCell rightAlign"><i class="fa-solid fa-align-right"></i></div>
+        <div class="iconCell colorCell"><i class="fa-sharp fa-solid fa-palette"></i></div>
+        <div class="iconCell borderCell"><i class="fa-solid fa-border-all"></i></div>
+        <div class="iconCell fontColor">
+            <img src="./images/font_color_icon.png" alt="">
+            <input type="color" name="" id="fontColor">
+        </div>
     </div>
     <div class="formula-container">
         <input type="text" class="address-bar">
@@ -82,14 +86,11 @@
         <input type="text" class="function-bar">
     </div>
     <div class="grid-container">
-        <div class="useless-box"></div>
-        <div class="row-container">
-            <!-- <div class="row-count">1</div> -->
-            
-        </div>
-        <div class="col-container">
-            <!-- <div class="col-count">A</div> -->
-            
+        <div class="top-left-dummy"></div>
+        <div class="address-col-cont"></div>
+        
+        <div class="cell-grid">
+            <div class="address-row-cont"></div>
         </div>
     </div>
     <div class="footer"></div>
@@ -97,5 +98,6 @@
 
 
     <script src="index.js"></script>
+    <!-- <script src="./storage.js"></script> -->
 </body>
 </html>
