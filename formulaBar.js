@@ -11,6 +11,7 @@ for(let i = 0; i<row;i++){
         $eachCell.addEventListener('blur',(e)=>{
             let target = (e.target);
             sheetDb[target.getAttribute('rid')][target.getAttribute('cid')]['value'] = target.innerText;;
+            updateCurrSelectedCell(currCellSelected);
             // console.log(sheetDb[target.getAttribute('rid')][target.getAttribute('cid')].value)
         })
     }
@@ -21,12 +22,21 @@ $functionBar.addEventListener('keyup',(e)=>{
         let res = evaluateExpression(e.target.value);
         currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
         currCellStorageObject['value']=res;
-        e.target.value = "";
+        currCellStorageObject['formula']=e.target.value;
+        // e.target.value = "";
         updateCurrSelectedCell(currCellSelected);
     }
 });
 function evaluateExpression(exp){
     try {
+        let expArr = exp.split(' ');
+        for(let i = 0;i<expArr.length;i++){
+            let ascciValueOfFirstChar = expArr[i].charCodeAt(0);
+            if(ascciValueOfFirstChar>=65 && ascciValueOfFirstChar<=90){
+                expArr[i]=findValueOfCellUsingAddress(expArr[i]);
+            }
+        }
+        exp = expArr.join('');
         let res = eval(exp);
         return res;
       }
@@ -34,3 +44,11 @@ function evaluateExpression(exp){
         return exp;
       }
 };
+function findValueOfCellUsingAddress(address){
+    let colIndex = address.charCodeAt(0)-65;
+    let rowIndex = JSON.parse(address.charAt(1))-1;
+    // console.log(colIndex,rowIndex);
+    let cellObj = sheetDb[rowIndex][colIndex]['value'];
+    // console.log(cellObj);
+    return cellObj; 
+}

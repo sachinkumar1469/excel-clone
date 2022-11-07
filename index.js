@@ -44,7 +44,9 @@ for(let i = 0;i<row;i++){
             fontSize:'medium',
             fontColor:'#000000',
             BgColor:'white',
-            value:""
+            value:"",
+            formula:"",
+            children:[]
         }
         sheetRow.push(cellProp);
     }
@@ -200,6 +202,9 @@ function updateCurrSelectedCell(currCellSelected){
     
     let valueOfCell = currCellStorageObject['value'];
     currCellSelected.innerText = valueOfCell;
+
+    let valueOfFormulaBar = currCellStorageObject['formula'];
+    $functionBar.value = valueOfFormulaBar?valueOfFormulaBar:valueOfCell;
 
     $fontColor.value = colorOfCell;
 }
