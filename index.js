@@ -200,15 +200,52 @@ function updateCurrSelectedCell(currCellSelected){
     let colorOfCell = currCellStorageObject['fontColor'];
     currCellSelected.style.color = colorOfCell;
     
-    let valueOfCell = currCellStorageObject['value'];
-    currCellSelected.innerText = valueOfCell;
 
-    let valueOfFormulaBar = currCellStorageObject['formula'];
-    $functionBar.value = valueOfFormulaBar?valueOfFormulaBar:valueOfCell;
+    let valueOfFormulaBar = currCellStorageObject['formula']?currCellStorageObject['formula']:currCellStorageObject['value'];
+    $functionBar.value = valueOfFormulaBar;
+
+    let valueOfCell = currCellStorageObject['value'];
+    let valueOfCellUsingFormula = evaluateExpression(valueOfFormulaBar);
+    currCellStorageObject['value'] = valueOfCellUsingFormula?valueOfCellUsingFormula:valueOfCell;
+    currCellSelected.innerText = currCellStorageObject['value'];
+    // currCellSelected.innerText = valueOfCell;
 
     $fontColor.value = colorOfCell;
 }
 
+function evaluateExpression(exp){
+    // console.log('just befor making call to eva function',exp);
+    
+    try {
+        
+        let expArr = exp.split(' ');
+        let childArr = [];
+        for(let i = 0;i<expArr.length;i++){
+            let ascciValueOfFirstChar = expArr[i].charCodeAt(0);
+            if(ascciValueOfFirstChar>=65 && ascciValueOfFirstChar<=90){
+                childArr.push(expArr[i]);
+                expArr[i]=findValueOfCellUsingAddress(expArr[i])['value'];
+                
+            }
+        }
+        
+        let res = eval(expArr.join(''));
+        // console.log(childArr);
+        addValueOfChildToParent(childArr);
+        return res;
+      }
+      catch(err) {
+        return exp;
+      }
+};
+function findValueOfCellUsingAddress(address){
+    let colIndex = address.charCodeAt(0)-65;
+    let rowIndex = JSON.parse(address.charAt(1))-1;
+    // console.log(colIndex,rowIndex);
+    let cellObj = sheetDb[rowIndex][colIndex];
+    // console.log(cellObj);
+    return cellObj; 
+}
 
 
 document.querySelector('.cell').click();
