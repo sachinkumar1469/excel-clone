@@ -210,4 +210,5 @@ function updateCurrSelectedCell(currCellSelected){
 }
 
 
+
 document.querySelector('.cell').click();

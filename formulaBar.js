@@ -30,14 +30,19 @@ $functionBar.addEventListener('keyup',(e)=>{
 function evaluateExpression(exp){
     try {
         let expArr = exp.split(' ');
+        let childArr = [];
         for(let i = 0;i<expArr.length;i++){
             let ascciValueOfFirstChar = expArr[i].charCodeAt(0);
             if(ascciValueOfFirstChar>=65 && ascciValueOfFirstChar<=90){
+                childArr.push(expArr[i]);
                 expArr[i]=findValueOfCellUsingAddress(expArr[i]);
+                
             }
         }
-        exp = expArr.join('');
-        let res = eval(exp);
+        
+        let res = eval(expArr.join(''));
+        // console.log(childArr);
+        addValueOfChildToParent(childArr);
         return res;
       }
       catch(err) {
@@ -51,4 +56,13 @@ function findValueOfCellUsingAddress(address){
     let cellObj = sheetDb[rowIndex][colIndex]['value'];
     // console.log(cellObj);
     return cellObj; 
+}
+
+function addValueOfChildToParent(childList){
+    if(childList.length==0){
+        return;
+    }
+    console.log(childList,'child');
+    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
+    console.log(currCellStorageObject.children,'children');
 }
