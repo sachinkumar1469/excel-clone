@@ -15,6 +15,7 @@ let $rowRepCol = document.querySelector('.address-col-cont');
 let $colRepRow = document.querySelector('.address-row-cont');
 let $cellGird = document.querySelector('.cell-grid');
 let $addressBar = document.querySelector('.address-bar');
+let $functionBar = document.querySelector('.function-bar');
 
 let $fontFamily = document.querySelector('.fontFamily');
 let $fontSize = document.querySelector('.fontSize');
@@ -42,7 +43,8 @@ for(let i = 0;i<row;i++){
             fontFamily:'sans-serif',
             fontSize:'medium',
             fontColor:'#000000',
-            BgColor:'white'
+            BgColor:'white',
+            value:""
         }
         sheetRow.push(cellProp);
     }
@@ -88,7 +90,7 @@ for(let i = 1; i<=row;i++){
 //Function to add address bar event listener
 function addEventListenerForAddressBar($cell,i,j){
     $cell.addEventListener('click',(event)=>{
-        $addressBar.value = `${i}${String.fromCharCode(64+j)}`;
+        $addressBar.value = `${String.fromCharCode(64+j)}${i}`;
         removePrevCellProp(currCellSelected);
         if($cell != currCellSelected){
             removeDBclickProp(currCellSelected);
@@ -100,12 +102,10 @@ function addEventListenerForAddressBar($cell,i,j){
 }
 
 //To remove previous cell double click properties
-function removeDBclickProp(currCellSelected){
-    
+function removeDBclickProp(currCellSelected){   
     if(currCellSelected == null){
         return;
-    }
-    
+    }   
     currCellSelected.removeAttribute('contenteditable');
 }
 
@@ -196,60 +196,13 @@ function updateCurrSelectedCell(currCellSelected){
     
     //To update the color
     let colorOfCell = currCellStorageObject['fontColor'];
-    
     currCellSelected.style.color = colorOfCell;
     
+    let valueOfCell = currCellStorageObject['value'];
+    currCellSelected.innerText = valueOfCell;
+
     $fontColor.value = colorOfCell;
 }
 
-$bold.addEventListener('click',(e)=>{
-    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    currCellStorageObject['bold']=!currCellStorageObject['bold'];
-    updateCurrSelectedCell(currCellSelected);
-})
-$italic.addEventListener('click',(e)=>{
-    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    currCellStorageObject['italic']=!currCellStorageObject['italic'];
-    updateCurrSelectedCell(currCellSelected);
-})
-$udline.addEventListener('click',(e)=>{
-    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    currCellStorageObject['underline']=!currCellStorageObject['underline'];
-    updateCurrSelectedCell(currCellSelected);
-})
 
-$leftAlign.addEventListener('click',(e)=>{
-    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    currCellStorageObject['alignment']='left';
-    updateCurrSelectedCell(currCellSelected);
-})
-$rightAlign.addEventListener('click',(e)=>{
-    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    currCellStorageObject['alignment']='right';
-    updateCurrSelectedCell(currCellSelected);
-})
-$centerAlign.addEventListener('click',(e)=>{
-    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    currCellStorageObject['alignment']='center';
-    updateCurrSelectedCell(currCellSelected);
-})
-$fontFamily.addEventListener("change",(e)=>{
-    // console.log(e.target.value);
-    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    currCellStorageObject['fontFamily'] = e.target.value;
-    updateCurrSelectedCell(currCellSelected);
-})
-
-$fontSize.addEventListener('change',(e)=>{
-    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    currCellStorageObject['fontSize'] = e.target.value;
-    updateCurrSelectedCell(currCellSelected);
-    // console.log(e.target.value);
-})
-
-$fontColor.addEventListener('change',(e)=>{
-    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    currCellStorageObject['fontColor'] = e.target.value;
-    updateCurrSelectedCell(currCellSelected);
-})
 document.querySelector('.cell').click();
