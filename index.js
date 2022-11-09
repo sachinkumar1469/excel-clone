@@ -53,17 +53,19 @@ for(let i = 0;i<row;i++){
     sheetDb.push(sheetRow);
 }
 
-//To create row column
+//To create column of row's
 for(let i = 1; i<=row ;i++){
     let $rowEl = document.createElement('div');
+    $rowEl.setAttribute('rowId',`${i-1}`);
     $rowEl.classList.add(`row-count`);
     $rowEl.textContent = i;
     $rowRepCol.appendChild($rowEl);
     
 }
-//To create column row
+//To create row of column's
 for(let i = 0;i<26;i++){
     let $colEl = document.createElement('div');
+    $colEl.setAttribute('colId',`${i}`)
     $colEl.classList.add('col-count');
     $colEl.textContent = String.fromCharCode(65+ i);
     $colRepRow.appendChild($colEl);
@@ -217,7 +219,21 @@ document.querySelectorAll('.cell').forEach((cell)=>{
         $previousBorderedCell.style.border = "none";
         $previousBorderedCell.style.borderRight = `1px solid rgb(132, 130, 130)`;
         $previousBorderedCell.style.borderBottom = `1px solid rgb(132, 130, 130)`;
+        let $prevColCount = document.querySelector(`.col-count[colId*='${$previousBorderedCell.getAttribute('cid')}']`);
+        let $prevRowCount = document.querySelector(`.row-count[rowId*='${$previousBorderedCell.getAttribute('rid')}']`);
+        $prevColCount.style.backgroundColor = "transparent";
+        $prevRowCount.style.backgroundColor = "transparent";
+
+
         $previousBorderedCell = cell;
+
+        
+
+        let $colCount = document.querySelector(`.col-count[colId*='${cell.getAttribute('cid')}']`);
+        let $rowCount = document.querySelector(`.row-count[rowId*='${cell.getAttribute('rid')}']`);
+        $colCount.style.backgroundColor = "#cbd0d2";
+        $rowCount.style.backgroundColor = "#cbd0d2";
+
         cell.style.border = '2px solid blue';
         $addressBar.value = cell.getAttribute('id');  // It sets the address to the value of active cell
         updateCellInUi(cellDiv(currentSelectedCellAddress()));
