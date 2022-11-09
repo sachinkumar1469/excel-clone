@@ -10,6 +10,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 5px 13px;
+    /* font-style: normal; */
 }
 .logo{
     
@@ -255,14 +256,15 @@
 .cell{
     height: 2rem;
     width: 6rem;
+    border: none;
     border-bottom: 1px solid rgb(132, 130, 130);
     border-right: 1px solid rgb(132, 130, 130);
     background-color: white;
-    outline: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* outline: none; */
+    padding: 0px 3px;
     font-size: 16px;
+    outline: none;
+    text-align: left;
 }
 .footer{
     width: 100%;

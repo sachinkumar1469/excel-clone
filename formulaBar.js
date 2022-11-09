@@ -1,52 +1,28 @@
-// $functionBar  currCellSelected
-
-// console.log(currCellSelected.getAttribute('cid'),currCellSelected.getAttribute('rid'));
-// console.log(document.querySelector(`.cell[rid='1'][cid='1']`));
-
-
-// To add event listener for blur on each cell
-for(let i = 0; i<row;i++){
-    for(let j = 0;j<col;j++){
-        let $eachCell = document.querySelector(`.cell[rid='${i}'][cid='${j}']`);
-        $eachCell.addEventListener('blur',(e)=>{
-            let target = (e.target);
-            // sheetDb[target.getAttribute('rid')][target.getAttribute('cid')]['formula'] = target.innerText;;
-            sheetDb[target.getAttribute('rid')][target.getAttribute('cid')]['value'] = target.innerText;;
-            updateCurrSelectedCell(currCellSelected);
-            // console.log(sheetDb[target.getAttribute('rid')][target.getAttribute('cid')].value)
-        })
-    }
-}
-
-$functionBar.addEventListener('keyup',(e)=>{
-    if(e.key == "Enter" && e.target.value !== ""){
-        // let res = evaluateExpression(e.target.value);
-        currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-        // currCellStorageObject['value']=res;
-        currCellStorageObject['formula']=e.target.value;
-        // currCellStorageObject['value']=e.target.value;
-        
-        // e.target.value = "";
-        updateCurrSelectedCell(currCellSelected);
-    }
+// Event listener to update the value when user blur on the cell
+document.querySelectorAll('.cell').forEach((cell)=>{
+    cell.addEventListener('blur',(e)=>{
+        let currCell = e.target;
+        let currCellDb = returnStorageObjOfCellByUsingAddress(currCell.getAttribute('id'));
+        let oldValue = currCellDb['value'];
+        currCellDb['value']=e.target.value;
+        if(!(oldValue == currCellDb['value'])){
+            // console.log('yes');
+            currCellDb['formula']=e.target.value;
+        }
+        updateCellInUi(e.target);
+    })
 });
 
-function addValueOfChildToParent(childList){
-    if(childList.length==0){
-        return;
+// Event listener for the formula bar
+$functionBar.addEventListener('keyup',(e)=>{
+    if(e.key == "Enter"){
+
+        let currCell = currentSelectedCellAddress();
+        let cellDb = returnStorageObjOfCellByUsingAddress(currCell);
+        let oldFormula = cellDb['formula'];
+        cellDb['formula'] = e.target.value;
+        cellDb['value'] = evaluateExpression(e.target.value,oldFormula,currCell);
+        updateCellInUi(cellDiv(currCell));
     }
-    // console.log(childList,'child');   
-    for(let i = 0;i<childList.length;i++){
-        addCurrElementAsChildToParent(childList[i])
-    }
-    // console.log(currCellStorageObject['children']);
-}
-function addCurrElementAsChildToParent(parentAddress){
-    let storageObj = findValueOfCellUsingAddress(parentAddress);
-    if(!storageObj['children'].includes(currCellSelected)){
-        storageObj['children'].push(currCellSelected);
-    }
-    // console.log(storageObj['children'],'PARENT IS',storageObj);
-    
-}
+});
 

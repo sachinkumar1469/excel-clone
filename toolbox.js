@@ -1,50 +1,62 @@
 $bold.addEventListener('click',(e)=>{
-    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    currCellStorageObject['bold']=!currCellStorageObject['bold'];
-    updateCurrSelectedCell(currCellSelected);
-})
+    let currSelectedCell = currentSelectedCellAddress();
+    let currCellSheetDBObj = returnStorageObjOfCellByUsingAddress(currSelectedCell);
+    currCellSheetDBObj['bold'] = !currCellSheetDBObj['bold'];
+    updateCellInUi(cellDiv(currSelectedCell));
+});
+
 $italic.addEventListener('click',(e)=>{
-    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    currCellStorageObject['italic']=!currCellStorageObject['italic'];
-    updateCurrSelectedCell(currCellSelected);
-})
+    let currSelectedCell = currentSelectedCellAddress();
+    let currCellSheetDBObj = returnStorageObjOfCellByUsingAddress(currSelectedCell);
+    currCellSheetDBObj['italic'] = !currCellSheetDBObj['italic'];
+    updateCellInUi(cellDiv(currSelectedCell));
+});
+
 $udline.addEventListener('click',(e)=>{
-    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    currCellStorageObject['underline']=!currCellStorageObject['underline'];
-    updateCurrSelectedCell(currCellSelected);
-})
+    let currSelectedCell = currentSelectedCellAddress();
+    let currCellSheetDBObj = returnStorageObjOfCellByUsingAddress(currSelectedCell);
+    currCellSheetDBObj['underline'] = !currCellSheetDBObj['underline'];
+    updateCellInUi(cellDiv(currSelectedCell));
+});
 
 $leftAlign.addEventListener('click',(e)=>{
-    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    currCellStorageObject['alignment']='left';
-    updateCurrSelectedCell(currCellSelected);
-})
+    let currSelectedCell = currentSelectedCellAddress();
+    let currCellSheetDBObj = returnStorageObjOfCellByUsingAddress(currSelectedCell);
+    currCellSheetDBObj['alignment'] = 'left';
+    updateCellInUi(cellDiv(currSelectedCell));
+});
+
 $rightAlign.addEventListener('click',(e)=>{
-    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    currCellStorageObject['alignment']='right';
-    updateCurrSelectedCell(currCellSelected);
-})
+    let currSelectedCell = currentSelectedCellAddress();
+    let currCellSheetDBObj = returnStorageObjOfCellByUsingAddress(currSelectedCell);
+    currCellSheetDBObj['alignment'] = 'right';
+    updateCellInUi(cellDiv(currSelectedCell));
+});
+
 $centerAlign.addEventListener('click',(e)=>{
-    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    currCellStorageObject['alignment']='center';
-    updateCurrSelectedCell(currCellSelected);
-})
+    let currSelectedCell = currentSelectedCellAddress();
+    let currCellSheetDBObj = returnStorageObjOfCellByUsingAddress(currSelectedCell);
+    currCellSheetDBObj['alignment'] = 'center';
+    updateCellInUi(cellDiv(currSelectedCell));
+});
+
 $fontFamily.addEventListener("change",(e)=>{
-    // console.log(e.target.value);
-    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    currCellStorageObject['fontFamily'] = e.target.value;
-    updateCurrSelectedCell(currCellSelected);
-})
+    let currSelectedCell = currentSelectedCellAddress();
+    let currCellSheetDBObj = returnStorageObjOfCellByUsingAddress(currSelectedCell);
+    currCellSheetDBObj['fontFamily'] = e.target.value;
+    updateCellInUi(cellDiv(currSelectedCell));
+});
 
 $fontSize.addEventListener('change',(e)=>{
-    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    currCellStorageObject['fontSize'] = e.target.value;
-    updateCurrSelectedCell(currCellSelected);
-    // console.log(e.target.value);
-})
+    let currSelectedCell = currentSelectedCellAddress();
+    let currCellSheetDBObj = returnStorageObjOfCellByUsingAddress(currSelectedCell);
+    currCellSheetDBObj['fontSize'] = e.target.value;
+    updateCellInUi(cellDiv(currSelectedCell));
+});
 
 $fontColor.addEventListener('change',(e)=>{
-    currCellStorageObject = sheetDb[currCellSelected.getAttribute('rid')][currCellSelected.getAttribute('cid')];
-    currCellStorageObject['fontColor'] = e.target.value;
-    updateCurrSelectedCell(currCellSelected);
+    let currSelectedCell = currentSelectedCellAddress();
+    let currCellSheetDBObj = returnStorageObjOfCellByUsingAddress(currSelectedCell);
+    currCellSheetDBObj['fontColor'] = e.target.value;
+    updateCellInUi(cellDiv(currSelectedCell));
 })
