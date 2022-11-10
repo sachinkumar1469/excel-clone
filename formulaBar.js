@@ -22,7 +22,8 @@ function addChildToGraphComponent(formula,childAddress){
         if(ascciValue>=60 && ascciValue<=90){
             let parent = formulaArr[i];
             let [prid,pcid] = getRidAndCid(parent);
-            graphComponentMatrix[prid][pcid].push(getRidAndCid(childAddress)) 
+            graphComponentMatrix[prid][pcid].push(getRidAndCid(childAddress));
+            // console.log(graphComponentMatrix[prid][pcid],prid,pcid,'is parent of ',getRidAndCid(childAddress));
         }
     }
 }
@@ -65,10 +66,7 @@ function getRidAndCid(address){
 // let [ccid,rrid] = getRidAndCid('B3')
 // console.log(ccid,rrid);
 
-function checkGraphCycle(){
-    console.log("cycle called");
-    return false;
-}
+
 
 // Event listener for the formula bar
 $functionBar.addEventListener('keyup',(e)=>{

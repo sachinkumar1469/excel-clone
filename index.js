@@ -29,6 +29,16 @@ let $fontColor = document.querySelector('#fontColor');
 
 // let currCellSelected;
 
+let graphComponentMatrix = [];
+
+for (let i = 0; i < row; i++) {
+    let rowIs = [];
+    for (let j = 0; j < col; j++) {
+        // Why array -> More than 1 child relation(dependency)
+        rowIs.push([]);
+    }
+    graphComponentMatrix.push(rowIs);
+}
 
 // Sheet database
 let sheetDb = [];
@@ -264,7 +274,7 @@ function evaluateExpression(exp,oldExp='',currCell){
             removeChildFromGraphComponent(oldExp,currCell);
         }
         addChildToGraphComponent(exp,currCell);
-        let isCyclic = checkGraphCycle();
+        let isCyclic = checkGraphCycle(graphComponentMatrix);
         if(isCyclic){
             window.alert(`change the ${exp} formula because it forms the infinite recursive cycle`)
             removeChildFromGraphComponent(exp,currCell);
