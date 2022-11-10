@@ -172,7 +172,7 @@ function updateCellInUi(cell){
     cell.value = dbObj['value'];
 
     let childrens = dbObj['children'];
-    console.log(childrens);
+    // console.log(childrens);
 
     updateUiOfChildrens(childrens);
     
@@ -261,12 +261,20 @@ function evaluateExpression(exp,oldExp='',currCell){
         let res = eval(expArr.join(''));
         if(oldExp != exp){
             removeChildrens(oldExp,currCell);
+            removeChildFromGraphComponent(oldExp,currCell);
         }
-        addChildToParent(exp,currCell)
+        addChildToGraphComponent(exp,currCell);
+        let isCyclic = checkGraphCycle();
+        if(isCyclic){
+            window.alert(`change the ${exp} formula because it forms the infinite recursive cycle`)
+            removeChildFromGraphComponent(exp,currCell);
+            return '';
+        }
+        addChildToParent(exp,currCell);
         return res;
       }
       catch(err) {
-        // console.log(err);
+        console.log('catch error fuck you',err);
         return exp;
       }
 };
@@ -283,7 +291,7 @@ function addChildToParent(exp,childCell){
             if(!returnStorageObjOfCellByUsingAddress(parent)['children'].includes(childCell)){
                 returnStorageObjOfCellByUsingAddress(parent)['children'].push(childCell);
             }
-            console.log(returnStorageObjOfCellByUsingAddress(parent)['children'],"this is parents sheetBd",parent);
+            // console.log(returnStorageObjOfCellByUsingAddress(parent)['children'],"this is parents sheetBd",parent);
         }
     }
 }
